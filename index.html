@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doctor Care</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ... Seu CSS existente aqui ... */
+        :root {
+            --brand-green-hover: #B98F7E;
+            --brand-green: #B98F7E;
+            --brand-green-light: #f8e5cd;
+            --brand-green-light-02: #f8e5cd;
+            --brand-beige: #FFFAF1;
+            --gray-headline: #212529;
+            --gray-paragraph: #495057;
+            --white: #FFFFFF;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .container {
+            /* width: 100%; */
+            margin-left: 8.125rem;
+            margin-right: 8.125rem;
+        }
+
+        .section {
+            padding: 10rem 0;
+        }
+
+        .position {
+            position: relative;
+        }
+
+        header {
+            height: 4.5rem;
+            background-color: var(--brand-green-light);
+            position: sticky;
+            /* opacity: 0.9; */
+            top: 0;
+            z-index: 1;
+            transition: 0.3s;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--white);
+            padding-bottom: 1.4rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--brand-green-hover);
+            border-bottom: 2px solid var(--brand-green-hover);
+        }
+
+        nav button {
+            background-color: var(--brand-green-light);
+            color: var(--brand-green);
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.625rem 1.5rem;
+            border: 1px solid var(--brand-green);
+            border-radius: 2.5rem;
+            cursor: pointer;
+        }
+
+        nav button:hover {
+            background-color: var(--brand-green);
+            color: var(--white);
+        }
+
+        #welcome-section {
+            background-color: var(--brand-green-light);
+            padding-top: 3rem;
+            padding-bottom: 3rem;
+        }
+
+        .welcome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content>p {
+            font-size: 0.875rem;
+            color: var(--brand-green);
+            font-weight: 700;
+        }
+
+        .content>h1 {
+            font-size: 3.25rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+            margin-top: 1rem;
+        }
+
+        .content>h2 {
+            font-size: 1.125rem;
+            color: var(--gray-paragraph);
+            font-weight: 400;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            background-color: var(--brand-green);
+            color: var(--white);
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 1.0625rem 2rem;
+            border: none;
+            border-radius: 2.5rem;
+            cursor: pointer;
+
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .button:hover {
+            background-color: var(--brand-green-hover);
+        }
+
+        .button-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .welcome-img {
+            width: 30%;
+            /* height: 38.18rem; */
+            margin: 0 auto;
+            /* margin-right: 2.75rem; */
+        }
+
+        .data {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: var(--brand-beige);
+            padding: 3.75rem 0rem;
+            border-radius: 0.375rem;
+            width: 100%;
+
+            position: absolute;
+            bottom: -8.5rem;
+        }
+
+        .data div.patients,
+        .data div.experts,
+        .data div.market {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .data div.patients h2,
+        .data div.experts h2,
+        .data div.market h2 {
+            font-size: 3rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+        }
+
+        .data div.patients p,
+        .data div.experts p,
+        .data div.market p {
+            font-size: 1rem;
+            color: var(--brand-green);
+            font-weight: 400;
+        }
+
+        .data div.separator {
+            width: 1px;
+            background-color: var(--brand-green);
+        }
+
+        #testimonials {
+    background-color: #FFFAF1;
+    padding: 5rem 2rem;
+  }
+  
+  .testimonial-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  
+  .testimonial-text {
+    flex: 1 1 45%;
+  }
+  
+  .testimonial-text h2 {
+    font-size: 2rem;
+    color: #00453A;
+    margin-bottom: 0.5rem;
+  }
+  
+  .subtitle {
+    font-size: 1rem;
+    color: #495057;
+    margin-bottom: 2rem;
+  }
+  
+  .testimonial h3 {
+    font-size: 1.25rem;
+    color: #00453A;
+    margin-bottom: 1rem;
+  }
+  
+  .testimonial p {
+    font-size: 1rem;
+    color: #495057;
+    line-height: 1.6;
+  }
+  
+  .testimonial-buttons {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .testimonial-buttons button {
+    width: 2.5rem;
+    height: 2.5rem;
+    border: none;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    cursor: pointer;
+    background-color: #DCE9E2;
+    color: #00453A;
+    transition: 0.3s;
+  }
+  
+  .testimonial-buttons button:hover {
+    background-color: #00453A;
+    color: #FFFFFF;
+  }
+  
+  .testimonial-image {
+    flex: 1 1 40%;
+    text-align: center;
+  }
+  
+  .testimonial-image img {
+    max-width: 300px;
+    height: auto;
+  }
+  
+
+        #about-section {
+            background-color: var(--brand-beige);
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+        }
+
+        .about .about-img {
+            width: 45%;
+            margin-right: 5rem;
+        }
+
+        .about .about-text {
+            max-width: 36rem;
+        }
+
+        .about .about-text p {
+            font-size: 0.875rem;
+            color: var(--brand-green);
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+        }
+
+        .about .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+        }
+
+        .about .about-text .paragraph {
+            font-size: 1rem;
+            color: var(--gray-paragraph);
+            font-weight: 400;
+            margin-top: 1.5rem;
+        }
+
+        .contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-text h2 {
+            font-size: 2.5rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .address,
+        .email {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .address img,
+        .email img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .address p,
+        .email p {
+            font-size: 1rem;
+            color: var(--gray-paragraph);
+            font-weight: 400;
+        }
+
+        .contact-img {
+            width: 45%;
+            margin-left: 9rem;
+        }
+
+        footer {
+            background-color: var(--brand-green);
+            padding: 5rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text img {
+            width: 16rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-text p:nth-child(2) {
+            margin-bottom: 1rem;
+        }
+
+        .footer-text p {
+            font-size: 0.875rem;
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Botão do menu hambúrguer */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 1.5rem;
+            height: 2px;
+            background-color: var(--brand-green);
+            border-radius: 1px;
+        }
+
+        /* ... Seu CSS existente aqui ... */
+
+        /* Botão do menu hambúrguer */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+            z-index: 1001;
+        }
+
+        .menu-toggle span {
+            width: 1.5rem;
+            height: 2px;
+            background-color: var(--brand-green);
+            border-radius: 1px;
+        }
+
+        /* RESPONSIVIDADE */
+        @media (max-width: 1024px) {
+            .container {
+                margin-left: 2rem;
+                margin-right: 2rem;
+            }
+
+            .cards {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about .about-img {
+                width: 80%;
+                margin: 0 auto 2rem;
+            }
+
+            .contact {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-img {
+                width: 80%;
+                margin: 2rem auto 0;
+            }
+
+            .data {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem;
+                position: static;
+                border-radius: 0;
+            }
+
+            .data div.separator {
+                display: none;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul.nav-links {
+                position: absolute;
+                top: 4.5rem;
+                right: 0;
+                background: var(--brand-green-light);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem 0;
+                display: none;
+                transition: all 0.3s ease-in-out;
+                z-index: 999;
+            }
+
+            nav ul.nav-links.show {
+                display: flex;
+            }
+
+            nav ul li a {
+                font-size: 1.25rem;
+                padding-bottom: 0;
+            }
+
+            nav button {
+                margin-top: 1rem;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .welcome {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .welcome-img {
+                width: 80%;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .service-text>h2 {
+                font-size: 2rem;
+                padding: 0 1rem;
+            }
+
+            .about .about-text h2,
+            .contact-text h2 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .content>h1 {
+                font-size: 2rem;
+            }
+
+            .content>h2 {
+                font-size: 1rem;
+            }
+
+            .button {
+                flex-direction: column;
+                padding: 0.75rem 1.5rem;
+            }
+
+            .card h2 {
+                font-size: 1.25rem;
+            }
+
+            .footer-text img {
+                width: 12rem;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <img src="public/assets/ Essência Saúde.png" alt="Logo" />
+
+            <!-- Botão do menu hamburguer -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navegação principal -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#welcome-section">Início</a></li>
+                    <li><a href="#services-section">Serviços</a></li>
+                    <li><a href="#about-section">Sobre</a></li>
+                    <li><a href="#contact-section">Contato</a></li>
+                    <li><button>Agendar consulta</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <section id="welcome-section">
+            <div class="container position">
+                <div class="welcome">
+                    <div class="content">
+                        <p>BOAS-VINDAS A ESSÊNCIA SAÚDE 👋</p>
+                        <h1>Uma clíca focada <br /> no seu bem estar</h1>
+                        <h2>Os psicólogos da nossa clínica vão além dos sintomas, <br />
+                            buscando compreender as causas profundas das suas dificuldades <br>emocionais para promover
+                            bem-estar e equilíbrio duradouros.</h2>
+                        <button class="button">
+                            <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
+                            AGENDE SUA CONSULTA
+                        </button>
+                    </div>
+                    <img class="welcome-img" src="public/assets/image.png" alt="Imagem de paciente">
+                </div>
+
+                <div class="data">
+                    <div class="patients">
+                        <h2>+3.500</h2>
+                        <p>Pacientes atendidos</p>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="experts">
+                        <h2>+15</h2>
+                        <p>Especialistas disponíveis</p>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="market">
+                        <h2>+03</h2>
+                        <p>Anos no mercado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="testimonials">
+            <div class="testimonial-container">
+              <div class="testimonial-text">
+                <h2>Nossas histórias</h2>
+                <p class="subtitle">Confira a opinião de quem já passou pelos nossos cuidados</p>
+          
+                <div class="testimonial" id="testimonial-content">
+                  <h3>Renata, 32 anos – Taguatinga, DF</h3>
+                  <p>"Eu achava que nunca ia conseguir sair desse ciclo de ansiedade e tristeza. Na Virtude eu encontrei profissionais que realmente me escutam e me ajudam a entender minhas emoções. Hoje, me sinto mais forte e sei que estou no caminho certo."</p>
+                </div>
+          
+                <div class="testimonial-buttons">
+                  <button id="prev-btn">&#10094;</button>
+                  <button id="next-btn">&#10095;</button>
+                </div>
+              </div>
+          
+              <div class="testimonial-image">
+                <img src="renata.png" alt="Foto de paciente">
+              </div>
+            </div>
+          </section>
+          
+
+        <section id="about-section" class="section">
+            <div class="container about">
+                <img class="about-img" src="public/assets/patients.png" alt="Imagem de pacientes">
+                <div class="about-text">
+                    <p>SOBRE NÓS</p>
+                    <h2>Entenda quem somos <br /> e por que existimos</h2>
+                    <p class="paragraph">
+                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
+                        consequat duis enim. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
+                        Velit officia consequat duis enim. Amet minim mollit non deserunt ullamco est sit aliqua dolor
+                        do amet sint. Velit officia consequat duis enim. Amet minim mollit non deserunt ullamco est sit
+                        aliqua dolor do amet sint. Velit officia consequat duis enim. Amet minim mollit non deserunt
+                        ullamco est sit aliqua dolor do amet sint.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="section">
+            <div class="container contact">
+                <div class="contact-text">
+                    <h2>Entre em contato com <br /> a gente!</h2>
+                    <div class="contact-info">
+                        <div class="address">
+                            <img class="icon" src="public/assets/map-pin.svg" alt="Icone de mapa">
+                            <p>SCS Q. 1, Brasília - DF, 70395-900 Ed. Antonio Venâncio Da Silva - salas 1113 - 1114</p>
+                        </div>
+                        <div class="email">
+                            <img class="icon" src="public/assets/mail.svg" alt="Icone de email">
+                            <p>@gmail.com</p>
+                        </div>
+                    </div>
+                    <button class="button">
+                        <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
+                        AGENDE SUA CONSULTA
+                    </button>
+                </div>
+                <img class="contact-img" src="public/assets/contact.png" alt="Imagem de contato">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-text">
+                
+                <p>&copy;2025 - ESSENCIA SAÚDE.</p>
+                <p>Todos os direitos reservados.</p>
+            </div>
+            <div class="social">
+                <a href="https://www.instagram.com/" target="_blank">
+                    <img src="public/assets/instagram.svg" alt="Icone de instagram">
+                </a>
+                <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">
+                    <img src="public/assets/facebook.svg" alt="Icone de facebook">
+                </a>
+                <a href="https://www.youtube.com/" target="_blank">
+                    <img src="public/assets/youtube.svg" alt="Icone do youtube">
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Fecha o menu ao rolar a página
+        window.addEventListener('scroll', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('show');
+        });
+
+        const testimonials = [
+            {
+                name: "Renata, 32 anos – Taguatinga, DF",
+                text: `"Eu achava que nunca ia conseguir sair desse ciclo de ansiedade e tristeza. Na Virtude eu encontrei profissionais que realmente me escutam e me ajudam a entender minhas emoções. Hoje, me sinto mais forte e sei que estou no caminho certo."`,
+                image: "public/assets/image.png"
+            },
+            {
+                name: "Carlos, 45 anos – Brasília, DF",
+                text: `"Durante anos ignorei meu estresse e cansaço emocional. Na clínica, aprendi a reconhecer meus sentimentos e a lidar melhor com eles. Foi um divisor de águas na minha vida."`,
+                image: "public/assets/image.ng"
+            },
+            {
+                name: "Lívia, 28 anos – Águas Claras, DF",
+                text: `"A terapia me ajudou a recuperar minha autoestima e encontrar meu propósito. Me sinto mais confiante e com mais clareza para lidar com os desafios."`,
+                image: "public/assets/image.png"
+            }
+        ];
+
+        let current = 0;
+
+        const testimonialContent = document.getElementById("testimonial-content");
+        const imageContainer = document.querySelector(".testimonial-image img");
+
+        function updateTestimonial(index) {
+            testimonialContent.innerHTML = `
+      <h3>${testimonials[index].name}</h3>
+      <p>${testimonials[index].text}</p>
+    `;
+            imageContainer.src = testimonials[index].image;
+        }
+
+        document.getElementById("prev-btn").addEventListener("click", () => {
+            current = (current - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial(current);
+        });
+
+        document.getElementById("next-btn").addEventListener("click", () => {
+            current = (current + 1) % testimonials.length;
+            updateTestimonial(current);
+        });
+
+    </script>
+
+
+
+</body>
+
+</html>
