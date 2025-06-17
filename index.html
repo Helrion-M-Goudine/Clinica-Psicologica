@@ -4,586 +4,959 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Doctor Care</title>
+    <title>Essência Saúde</title>
+    <link rel="icon" type="image/png" href="..." />
     <link rel="stylesheet" href="style.css">
     <style>
         /* ... Seu CSS existente aqui ... */
-        :root {
-            --brand-green-hover: #B98F7E;
-            --brand-green: #B98F7E;
-            --brand-green-light: #f8e5cd;
-            --brand-green-light-02: #f8e5cd;
-            --brand-beige: #FFFAF1;
-            --gray-headline: #212529;
-            --gray-paragraph: #495057;
-            --white: #FFFFFF;
-        }
+        
+:root {
+    --principal-claro: #f8e5cd;
+    --principal: #b99f7e;
+    --bege: #FFFAF1;
+    --paragrafo-escuro: #212529;
+    --paragrafo-claro: #495057;
+    --white: #FFFFFF;
+    --brand-green: #b99f7e;
+    --brand-green-light: #b99f7e;
+    --gray-headline: #333;
+    --gray-paragraph: #666;
+    --brand-beige: #f5f5f5;
+}
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-        }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
 
-        html {
-            scroll-behavior: smooth;
-        }
+html {
+    scroll-behavior: smooth;
+}
 
-        body {
-            font-family: 'DM Sans', sans-serif;
-        }
+body {
+    font-family: 'DM Sans', sans-serif;
+    background-color: #f5f5f5;
+    line-height: 1.6;
+    color: #333;
+}
 
-        a {
-            text-decoration: none;
-        }
+a {
+    text-decoration: none;
+}
 
-        img {
-            width: 100%;
-            height: auto;
-        }
+img {
+    width: 100%;
+    height: auto;
+}
 
-        .container {
-            /* width: 100%; */
-            margin-left: 8.125rem;
-            margin-right: 8.125rem;
-        }
+.container {
+    margin-left: 8.125rem;
+    margin-right: 8.125rem;
+}
 
-        .section {
-            padding: 10rem 0;
-        }
+.section {
+    padding: 10rem 0;
+}
 
-        .position {
-            position: relative;
-        }
+.position {
+    position: relative;
+}
 
-        header {
-            height: 4.5rem;
-            background-color: var(--brand-green-light);
-            position: sticky;
-            /* opacity: 0.9; */
-            top: 0;
-            z-index: 1;
-            transition: 0.3s;
-        }
+/* Header */
+header {
+    height: 4.5rem;
+    background-color: var(--principal);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: top 0.3s ease;
+    z-index: 1000;
+}
 
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            height: 100%;
-        }
+.container.navbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 2rem;
+}
 
-        nav ul {
-            display: flex;
-            align-items: center;
-            gap: 3rem;
-            list-style: none;
-        }
+.logo {
+    width: 30%;
+    object-fit: contain;
+}
 
-        nav ul li a {
-            font-size: 1.125rem;
-            font-weight: 700;
-            color: var(--white);
-            padding-bottom: 1.4rem;
-        }
-
-        nav ul li a:hover {
-            color: var(--brand-green-hover);
-            border-bottom: 2px solid var(--brand-green-hover);
-        }
-
-        nav button {
-            background-color: var(--brand-green-light);
-            color: var(--brand-green);
-            font-size: 0.875rem;
-            font-weight: 700;
-            padding: 0.625rem 1.5rem;
-            border: 1px solid var(--brand-green);
-            border-radius: 2.5rem;
-            cursor: pointer;
-        }
-
-        nav button:hover {
-            background-color: var(--brand-green);
-            color: var(--white);
-        }
-
-        #welcome-section {
-            background-color: var(--brand-green-light);
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-
-        .welcome {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .content>p {
-            font-size: 0.875rem;
-            color: var(--brand-green);
-            font-weight: 700;
-        }
-
-        .content>h1 {
-            font-size: 3.25rem;
-            color: var(--gray-headline);
-            font-weight: 700;
-            margin-top: 1rem;
-        }
-
-        .content>h2 {
-            font-size: 1.125rem;
-            color: var(--gray-paragraph);
-            font-weight: 400;
-            margin-top: 1.5rem;
-            margin-bottom: 2rem;
-        }
-
-        .button {
-            background-color: var(--brand-green);
-            color: var(--white);
-            font-size: 0.875rem;
-            font-weight: 700;
-            padding: 1.0625rem 2rem;
-            border: none;
-            border-radius: 2.5rem;
-            cursor: pointer;
-
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .button:hover {
-            background-color: var(--brand-green-hover);
-        }
-
-        .button-icon {
-            width: 1.25rem;
-            height: 1.25rem;
-        }
-
-        .welcome-img {
-            width: 30%;
-            /* height: 38.18rem; */
-            margin: 0 auto;
-            /* margin-right: 2.75rem; */
-        }
-
-        .data {
-            display: flex;
-            justify-content: space-evenly;
-            background-color: var(--brand-beige);
-            padding: 3.75rem 0rem;
-            border-radius: 0.375rem;
-            width: 100%;
-
-            position: absolute;
-            bottom: -8.5rem;
-        }
-
-        .data div.patients,
-        .data div.experts,
-        .data div.market {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        .data div.patients h2,
-        .data div.experts h2,
-        .data div.market h2 {
-            font-size: 3rem;
-            color: var(--gray-headline);
-            font-weight: 700;
-        }
-
-        .data div.patients p,
-        .data div.experts p,
-        .data div.market p {
-            font-size: 1rem;
-            color: var(--brand-green);
-            font-weight: 400;
-        }
-
-        .data div.separator {
-            width: 1px;
-            background-color: var(--brand-green);
-        }
-
-        #testimonials {
-    background-color: #FFFAF1;
-    padding: 5rem 2rem;
-  }
-  
-  .testimonial-container {
+nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1100px;
-    margin: 0 auto;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-  
-  .testimonial-text {
-    flex: 1 1 45%;
-  }
-  
-  .testimonial-text h2 {
-    font-size: 2rem;
-    color: #00453A;
-    margin-bottom: 0.5rem;
-  }
-  
-  .subtitle {
-    font-size: 1rem;
-    color: #495057;
-    margin-bottom: 2rem;
-  }
-  
-  .testimonial h3 {
-    font-size: 1.25rem;
-    color: #00453A;
-    margin-bottom: 1rem;
-  }
-  
-  .testimonial p {
-    font-size: 1rem;
-    color: #495057;
-    line-height: 1.6;
-  }
-  
-  .testimonial-buttons {
-    margin-top: 2rem;
+    height: 100%;
+    position: relative;
+}
+
+nav ul {
     display: flex;
-    gap: 1rem;
-  }
-  
-  .testimonial-buttons button {
-    width: 2.5rem;
-    height: 2.5rem;
-    border: none;
-    border-radius: 50%;
-    font-size: 1.25rem;
+    align-items: center;
+    gap: 3rem;
+    list-style: none;
+}
+
+nav ul li a {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--white);
+    padding-bottom: 1.4rem;
+}
+
+nav ul li a:hover {
+    color: var(--bege);
+    border-bottom: 2px solid var(--bege);
+}
+
+nav button {
+    background-color: var(--principal-claro);
+    color: var(--white);
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 0.625rem 1.5rem;
+    border: 1px solid var(--white);
+    border-radius: 2.5rem;
     cursor: pointer;
-    background-color: #DCE9E2;
-    color: #00453A;
-    transition: 0.3s;
-  }
-  
-  .testimonial-buttons button:hover {
-    background-color: #00453A;
-    color: #FFFFFF;
-  }
-  
-  .testimonial-image {
-    flex: 1 1 40%;
+}
+
+nav button:hover {
+    background-color: var(--bege);
+    color: var(--paragrafo-claro);
+}
+
+/* Menu hambúrguer */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    gap: 0.3rem;
+    cursor: pointer;
+    z-index: 1001;
+    background: none;
+    border: none;
+    padding: 0.5rem;
+}
+
+.menu-toggle span {
+    width: 1.5rem;
+    height: 2px;
+    background-color: var(--white);
+    border-radius: 1px;
+    transition: all 0.3s ease;
+}
+
+.menu-toggle.active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(7px, -6px);
+}
+
+/* Welcome Section */
+#welcome-section {
+    background-color: var(--principal);
+    padding-top: 10rem;
+    padding-bottom: 6rem;
+}
+
+.welcome {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.content > p {
+    font-size: 0.875rem;
+    color: var(--white);
+    font-weight: 700;
+}
+
+.content > h1 {
+    font-size: 3.25rem;
+    color: var(--white);
+    font-weight: 700;
+    margin-top: 1rem;
+}
+
+.content > h2 {
+    font-size: 1.125rem;
+    color: var(--white);
+    font-weight: 400;
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+.button {
+    background-color: var(--brand-green);
+    color: var(--white);
+    font-size: 0.875rem;
+    font-weight: 700;
+    padding: 1.0625rem 2rem;
+    border: none;
+    border-radius: 2.5rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.button-icon {
+    width: 1.25rem;
+    height: 1.25rem;
+}
+
+.welcome-img {
+    width: 30%;
+    margin: 0 auto;
+}
+
+.data {
+    display: flex;
+    justify-content: space-evenly;
+    background-color: var(--brand-beige);
+    padding: 3.75rem 0rem;
+    border-radius: 0.375rem;
+    width: 100%;
+    position: absolute;
+    padding-top: 0.3rem;
+    bottom: -8.5rem;
+}
+
+.data div.patients,
+.data div.experts,
+.data div.market {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.data div.patients h2,
+.data div.experts h2,
+.data div.market h2 {
+    font-size: 3rem;
+    color: var(--gray-headline);
+    font-weight: 700;
+}
+
+.data div.patients p,
+.data div.experts p,
+.data div.market p {
+    font-size: 1rem;
+    color: var(--brand-green);
+    font-weight: 400;
+}
+
+.data div.separator {
+    width: 1px;
+    background-color: var(--brand-green);
+}
+
+/* About Section */
+#about-section {
+    background-color: var(--brand-beige);
+    padding: 0px;
+}
+
+.about {
+    display: flex;
+    align-items: center;
+}
+
+.about .about-img {
+    width: 45%;
+    margin-right: 5rem;
+}
+
+.about .about-text {
+    max-width: 36rem;
+}
+
+.about .about-text p {
+    font-size: 0.875rem;
+    color: var(--brand-green);
+    font-weight: 700;
+    margin-bottom: 0.625rem;
+}
+
+.about .about-text h2 {
+    font-size: 2.5rem;
+    color: var(--gray-headline);
+    font-weight: 700;
+}
+
+.about .about-text .paragraph {
+    font-size: 1rem;
+    color: var(--gray-paragraph);
+    font-weight: 400;
+    margin-top: 1.5rem;
+}
+
+/* Contact Section */
+.contact {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contact-text h2 {
+    font-size: 2.5rem;
+    color: var(--gray-headline);
+    font-weight: 700;
+    margin-bottom: 2.5rem;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.address,
+.email {
+    display: flex;
+    align-items: center;
+    gap: 0.375rem;
+}
+
+.address img,
+.email img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.address p,
+.email p {
+    font-size: 1rem;
+    color: var(--gray-paragraph);
+    font-weight: 400;
+}
+
+.contact-img {
+    width: 45%;
+    margin-left: 9rem;
+}
+
+/* Footer */
+footer {
+    background-color: var(--principal);
+    padding: 5rem 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-text img {
+    width: 16rem;
+    margin-bottom: 1.5rem;
+}
+
+.footer-text p:nth-child(2) {
+    margin-bottom: 1rem;
+}
+
+.footer-text p {
+    font-size: 0.875rem;
+    color: var(--white);
+    font-weight: 400;
+}
+
+.social {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.social img {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+/* Funcionarios Section */
+.funcionarios {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.funcionarios > .funcionarios {
     text-align: center;
-  }
-  
-  .testimonial-image img {
-    max-width: 300px;
-    height: auto;
-  }
-  
+    margin-bottom: 40px;
+}
 
-        #about-section {
-            background-color: var(--brand-beige);
-        }
+.funcionarios > .funcionarios h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 20px;
+}
 
-        .about {
-            display: flex;
-            align-items: center;
-        }
+.divider {
+    width: 100px;
+    height: 4px;
+    background: linear-gradient(to right, #10b981, #3b82f6);
+    margin: 0 auto 20px;
+}
 
-        .about .about-img {
-            width: 45%;
-            margin-right: 5rem;
-        }
+.description {
+    max-width: 800px;
+    margin: 0 auto;
+    color: #666;
+    font-size: 1.1rem;
+    text-align: justify;
+}
 
-        .about .about-text {
-            max-width: 36rem;
-        }
+.content-1 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
 
-        .about .about-text p {
-            font-size: 0.875rem;
-            color: var(--brand-green);
-            font-weight: 700;
-            margin-bottom: 0.625rem;
-        }
+/* Form Section */
+.form-section {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .about .about-text h2 {
-            font-size: 2.5rem;
-            color: var(--gray-headline);
-            font-weight: 700;
-        }
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-        .about .about-text .paragraph {
-            font-size: 1rem;
-            color: var(--gray-paragraph);
-            font-weight: 400;
-            margin-top: 1.5rem;
-        }
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
 
-        .contact {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+.form-group label {
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+}
 
-        .contact-text h2 {
-            font-size: 2.5rem;
-            color: var(--gray-headline);
-            font-weight: 700;
-            margin-bottom: 2.5rem;
-        }
+.form-group input,
+.form-group textarea {
+    padding: 12px;
+    border: 2px solid #e5e5e5;
+    border-radius: 25px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
 
-        .contact-info {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2.5rem;
-        }
+.form-group textarea {
+    border-radius: 15px;
+    resize: vertical;
+    font-family: inherit;
+}
 
-        .address,
-        .email {
-            display: flex;
-            align-items: center;
-            gap: 0.375rem;
-        }
+.form-group input:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #3b82f6;
+}
 
-        .address img,
-        .email img {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
+.submit-btn {
+    background: var(--principal);
+    color: white;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-        .address p,
-        .email p {
-            font-size: 1rem;
-            color: var(--gray-paragraph);
-            font-weight: 400;
-        }
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
 
-        .contact-img {
-            width: 45%;
-            margin-left: 9rem;
-        }
+/* Space Section */
+.space-section {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
 
-        footer {
-            background-color: var(--brand-green);
-            padding: 5rem 0;
-        }
+.space-section h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+}
 
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+/* Gallery */
+.gallery-container {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-        .footer-text img {
-            width: 16rem;
-            margin-bottom: 1.5rem;
-        }
+.gallery {
+    position: relative;
+    height: 300px;
+}
 
-        .footer-text p:nth-child(2) {
-            margin-bottom: 1rem;
-        }
+.gallery img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-        .footer-text p {
-            font-size: 0.875rem;
-            color: var(--white);
-            font-weight: 400;
-        }
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.8);
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    font-size: 1.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        .social {
-            display: flex;
-            gap: 1.5rem;
-        }
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 1);
+}
 
-        .social img {
-            width: 1.5rem;
-            height: 1.5rem;
-        }
+.prev-btn {
+    left: 15px;
+}
 
-        /* Botão do menu hambúrguer */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 0.3rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
+.next-btn {
+    right: 15px;
+}
 
-        .menu-toggle span {
-            width: 1.5rem;
-            height: 2px;
-            background-color: var(--brand-green);
-            border-radius: 1px;
-        }
+.indicators {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
 
-        /* ... Seu CSS existente aqui ... */
+.indicator {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
 
-        /* Botão do menu hambúrguer */
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 0.3rem;
-            cursor: pointer;
-            z-index: 1001;
-        }
+.indicator.active {
+    background: white;
+}
 
-        .menu-toggle span {
-            width: 1.5rem;
-            height: 2px;
-            background-color: var(--brand-green);
-            border-radius: 1px;
-        }
+/* Contact Info */
+.contact-info {
+    background: white;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
 
-        /* RESPONSIVIDADE */
-        @media (max-width: 1024px) {
-            .container {
-                margin-left: 2rem;
-                margin-right: 2rem;
-            }
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+}
 
-            .cards {
-                grid-template-columns: 1fr 1fr;
-            }
+.icon {
+    font-size: 1.2rem;
+    margin-top: 3px;
+}
 
-            .about {
-                flex-direction: column;
-                text-align: center;
-            }
+.info-text p {
+    margin: 0;
+    line-height: 1.4;
+}
 
-            .about .about-img {
-                width: 80%;
-                margin: 0 auto 2rem;
-            }
+.info-text strong {
+    color: #333;
+}
 
-            .contact {
-                flex-direction: column;
-                text-align: center;
-            }
+.info-text a {
+    color: #10b981;
+    text-decoration: none;
+    transition: color 0.3s;
+}
 
-            .contact-img {
-                width: 80%;
-                margin: 2rem auto 0;
-            }
+.info-text a:hover {
+    color: #059669;
+}
 
-            .data {
-                flex-direction: column;
-                gap: 2rem;
-                padding: 2rem;
-                position: static;
-                border-radius: 0;
-            }
+.whatsapp-btn {
+    background: var(--principal);
+    color: white;
+    padding: 15px 20px;
+    border: none;
+    border-radius: 25px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
 
-            .data div.separator {
-                display: none;
-            }
+.whatsapp-btn:hover {
+    background: #ac977c;
+    transform: translateY(-2px);
+}
 
-            footer .footer-content {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
-        }
+/* Toast */
+.toast {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #333;
+    color: white;
+    padding: 15px 20px;
+    border-radius: 5px;
+    transform: translateX(400px);
+    transition: transform 0.3s;
+    z-index: 1000;
+}
 
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: flex;
-            }
+.toast.show {
+    transform: translateX(0);
+}
 
-            nav ul.nav-links {
-                position: absolute;
-                top: 4.5rem;
-                right: 0;
-                background: var(--brand-green-light);
-                width: 100%;
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-                padding: 2rem 0;
-                display: none;
-                transition: all 0.3s ease-in-out;
-                z-index: 999;
-            }
+.toast.success {
+    background: #10b981;
+}
 
-            nav ul.nav-links.show {
-                display: flex;
-            }
+.toast.error {
+    background: #ef4444;
+}
 
-            nav ul li a {
-                font-size: 1.25rem;
-                padding-bottom: 0;
-            }
+/* Marcas Section */
+.corpo-categorias {
+    max-width: 1080px;
+    margin: auto;
+    padding-left: 25px;
+    padding-right: 25px;
+}
 
-            nav button {
-                margin-top: 1rem;
-            }
+.linha {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
 
-            .navbar {
-                position: relative;
-            }
+.marcas {
+    margin: auto;
+}
 
-            .welcome {
-                flex-direction: column;
-                text-align: center;
-                gap: 2rem;
-            }
+.col-5 {
+    width: 160px;
+}
 
-            .welcome-img {
-                width: 80%;
-            }
+.col-5 img {
+    width: 100%;
+    cursor: pointer;
+}
 
-            .cards {
-                grid-template-columns: 1fr;
-            }
+/* RESPONSIVIDADE */
 
-            .service-text>h2 {
-                font-size: 2rem;
-                padding: 0 1rem;
-            }
+/* Tablet - 1024px */
+@media (max-width: 1024px) {
+    .container {
+        margin-left: 2rem;
+        margin-right: 2rem;
+    }
 
-            .about .about-text h2,
-            .contact-text h2 {
-                font-size: 2rem;
-            }
-        }
+    .about {
+        flex-direction: column;
+        text-align: center;
+    }
 
-        @media (max-width: 480px) {
-            .container {
-                margin-left: 1rem;
-                margin-right: 1rem;
-            }
+    .about .about-img {
+        width: 80%;
+        margin: 0 auto 2rem;
+    }
 
-            .content>h1 {
-                font-size: 2rem;
-            }
+    .contact {
+        flex-direction: column;
+        text-align: center;
+    }
 
-            .content>h2 {
-                font-size: 1rem;
-            }
+    .contact-img {
+        width: 80%;
+        margin: 2rem auto 0;
+    }
 
-            .button {
-                flex-direction: column;
-                padding: 0.75rem 1.5rem;
-            }
+    .data {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 2rem;
+        position: static;
+        border-radius: 0;
+    }
 
-            .card h2 {
-                font-size: 1.25rem;
-            }
+    .data div.separator {
+        display: none;
+    }
 
-            .footer-text img {
-                width: 12rem;
-            }
-        }
+    footer .footer-content {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .content-1 {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .col-5 {
+        width: 120px;
+    }
+}
+
+/* Mobile - 768px */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    nav ul.nav-links {
+        position: absolute;
+        top: 4.5rem;
+        right: 0;
+        background: var(--principal);
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+        padding: 2rem 0;
+        display: none;
+        transition: all 0.3s ease-in-out;
+        z-index: 999;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul.nav-links.show {
+        display: flex;
+    }
+
+    nav ul li a {
+        font-size: 1.25rem;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+
+    nav ul li a:hover {
+        border-bottom: none;
+        color: var(--bege);
+    }
+
+    nav button {
+        margin-top: 1rem;
+    }
+
+    .navbar {
+        position: relative;
+    }
+
+    .welcome {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+    }
+
+    .welcome-img {
+        width: 80%;
+    }
+
+    .about .about-text h2,
+    .contact-text h2 {
+        font-size: 2rem;
+    }
+
+    .content > h1 {
+        font-size: 2.5rem;
+    }
+
+    .funcionarios > .funcionarios h1 {
+        font-size: 2rem;
+    }
+    
+    .description {
+        text-align: left;
+        font-size: 1rem;
+    }
+    
+    .form-section,
+    .contact-info {
+        padding: 20px;
+    }
+    
+    .gallery {
+        height: 250px;
+    }
+
+    .linha {
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .col-5 {
+        width: 100px;
+        margin-bottom: 1rem;
+    }
+
+    footer iframe {
+        width: 100%;
+        max-width: 350px;
+        height: 200px;
+    }
+}
+
+/* Mobile Small - 480px */
+@media (max-width: 480px) {
+    .container {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
+
+    .funcionarios {
+        padding: 15px;
+    }
+
+    .content > h1 {
+        font-size: 2rem;
+    }
+
+    .content > h2 {
+        font-size: 1rem;
+    }
+
+    .button {
+        flex-direction: column;
+        padding: 0.75rem 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .funcionarios > .funcionarios h1 {
+        font-size: 1.8rem;
+    }
+
+    .nav-btn {
+        width: 35px;
+        height: 35px;
+        font-size: 1.2rem;
+    }
+    
+    .prev-btn {
+        left: 10px;
+    }
+    
+    .next-btn {
+        right: 10px;
+    }
+
+    .footer-text img {
+        width: 12rem;
+    }
+
+    .form-section,
+    .contact-info {
+        padding: 15px;
+    }
+
+    .col-5 {
+        width: 80px;
+    }
+
+    .data div.patients h2,
+    .data div.experts h2,
+    .data div.market h2 {
+        font-size: 2rem;
+    }
+
+    .about .about-text h2,
+    .contact-text h2 {
+        font-size: 1.5rem;
+    }
+
+    footer iframe {
+        width: 100%;
+        max-width: 300px;
+        height: 180px;
+    }
+
+    .social {
+        gap: 1rem;
+    }
+
+    .social img {
+        width: 1.2rem;
+        height: 1.2rem;
+    }
+}
+
+/* Extra Small - 360px */
+@media (max-width: 360px) {
+    .container {
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+    }
+
+    .funcionarios {
+        padding: 10px;
+    }
+
+    .content > h1 {
+        font-size: 1.8rem;
+    }
+
+    .funcionarios > .funcionarios h1 {
+        font-size: 1.5rem;
+    }
+
+    .form-section,
+    .contact-info {
+        padding: 10px;
+    }
+
+    .col-5 {
+        width: 70px;
+    }
+
+    .linha {
+        gap: 0.5rem;
+    }
+
+}
     </style>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -595,7 +968,7 @@
 <body>
     <header>
         <div class="container navbar">
-        
+            <img class="logo" src="public/assets/Logo/psicologia (1).png" alt="Logo" />
 
             <!-- Botão do menu hamburguer -->
             <div class="menu-toggle" onclick="toggleMenu()">
@@ -628,12 +1001,16 @@
                         <h2>Os psicólogos da nossa clínica vão além dos sintomas, <br />
                             buscando compreender as causas profundas das suas dificuldades <br>emocionais para promover
                             bem-estar e equilíbrio duradouros.</h2>
-                        <button class="button">
-                            <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
-                            AGENDE SUA CONSULTA
-                        </button>
+                        <a
+                            href="https://wa.me/5561992697580?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde.">
+                            <button class="button">
+                                <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
+                                AGENDE SUA CONSULTA
+                            </button>
+                        </a>
+
                     </div>
-                    <img class="welcome-img" src="public/assets/image.png" alt="Imagem de paciente">
+                    <img class="welcome-img" src="public/assets/Img-site/Inicio.svg" alt="Imagem de paciente">
                 </div>
 
                 <div class="data">
@@ -658,44 +1035,29 @@
                 </div>
             </div>
         </section>
+        <!--https://preview--mente-acolhedora-site-07.lovable.app-->
 
-        <section id="testimonials">
-            <div class="testimonial-container">
-              <div class="testimonial-text">
-                <h2>Nossas histórias</h2>
-                <p class="subtitle">Confira a opinião de quem já passou pelos nossos cuidados</p>
-          
-                <div class="testimonial" id="testimonial-content">
-                  <h3>Renata, 32 anos – Taguatinga, DF</h3>
-                  <p>"Eu achava que nunca ia conseguir sair desse ciclo de ansiedade e tristeza. Na Virtude eu encontrei profissionais que realmente me escutam e me ajudam a entender minhas emoções. Hoje, me sinto mais forte e sei que estou no caminho certo."</p>
-                </div>
-          
-                <div class="testimonial-buttons">
-                  <button id="prev-btn">&#10094;</button>
-                  <button id="next-btn">&#10095;</button>
-                </div>
-              </div>
-          
-              <div class="testimonial-image">
-                <img src="renata.png" alt="Foto de paciente">
-              </div>
-            </div>
-          </section>
-          
+        <!--Fotos
+
+        -->
 
         <section id="about-section" class="section">
             <div class="container about">
-                <img class="about-img" src="public/assets/patients.png" alt="Imagem de pacientes">
+                <img class="about-img" src="public/assets/Logo/Logo parede.png" alt="Imagem de pacientes">
                 <div class="about-text">
-                    <p>SOBRE NÓS</p>
-                    <h2>Entenda quem somos <br /> e por que existimos</h2>
-                    <p class="paragraph">
-                        Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit officia
-                        consequat duis enim. Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint.
-                        Velit officia consequat duis enim. Amet minim mollit non deserunt ullamco est sit aliqua dolor
-                        do amet sint. Velit officia consequat duis enim. Amet minim mollit non deserunt ullamco est sit
-                        aliqua dolor do amet sint. Velit officia consequat duis enim. Amet minim mollit non deserunt
-                        ullamco est sit aliqua dolor do amet sint.
+                    <p></p>
+                    <h2 style="color: #B98F7E;">SOBRE NÓS</h2>
+                    <p class="paragraph" style="text-align: justify; text-justify: inter-word;">
+                        A Essência Saúde foi criada pensando em você.
+                        <br> <br>
+                        Somos uma clínica voltada exclusivamente para a área da Psicologia, com foco na promoção do
+                        bem-estar por meio da prevenção, avaliação e tratamento de questões emocionais e
+                        comportamentais.
+                        <br> <br>
+                        Aqui, entendemos que cada indivíduo tem sua própria história e necessidades. Por isso,
+                        oferecemos um atendimento individualizado, com respeito, empatia e acolhimento. Nossa equipe é
+                        formada por profissionais qualificados e comprometidos com uma escuta humanizada, garantindo que
+                        cada paciente receba cuidado atento e personalizado.
                     </p>
                 </div>
             </div>
@@ -714,39 +1076,226 @@
                             <img class="icon" src="public/assets/mail.svg" alt="Icone de email">
                             <p>@gmail.com</p>
                         </div>
+                        <div class="email">
+                            <img class="icon" src="public/assets/instagram.svg" style="color: #00453A;">
+                            <a href="https://www.instagram.com/essenciasaudeintegrada1/">
+                        </div>
                     </div>
-                    <button class="button">
-                        <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
-                        AGENDE SUA CONSULTA
-                    </button>
+                    <a
+                        href="https://wa.me/5561992697580?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde.">
+                        <button class="button">
+                            <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
+                            AGENDE SUA CONSULTA
+                        </button>
+                    </a>
                 </div>
-                <img class="contact-img" src="public/assets/contact.png" alt="Imagem de contato">
+                <img class="contact-img" src="public/assets/Img-site/Segunda.png" alt="Imagem de contato">
             </div>
         </section>
+
+        <div class="contact-container">
+            <!-- Formulário de Contato -->
+
+                <!-- Seção Conheça Nosso Espaço -->
+                  <div class="funcionarios">
+        <!-- Header -->
+        <div class="funcionarios">
+            <h1 style="color: var(--principal);">TRABALHE CONOSCO</h1>
+            <div class="divider"></div>
+            <p class="description">
+                Caso algum desses sintomas compareçam com frequência importante: estados depressivos,
+                ansiedade em excesso, compulsões alimentares, crises de pânico ou fobias, insônia e outros,
+                entre em contato para agendarmos um horário.
+            </p>
+        </div>
+
+        <div class="content-1">
+            <!-- Formulário de Contato -->
+            <div class="form-section">
+                <form id="contactForm" class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Nome:</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Telefone:</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="message">Mensagem:</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+
+                    <button type="submit" class="submit-btn">ENVIAR</button>
+                </form>
+            </div>
+
+            <!-- Conheça Nosso Espaço -->
+            <div class="space-section">
+                <h2 style="color: var(--principal);">Conheça Nosso Espaço</h2>
+                
+                <!-- Galeria de Imagens -->
+                <div class="gallery-container">
+                    <div class="gallery">
+                        <img id="currentImage" src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop" alt="Espaço da clínica">
+                        
+                        <button class="nav-btn prev-btn" onclick="prevImage()">&#8249;</button>
+                        <button class="nav-btn next-btn" onclick="nextImage()">&#8250;</button>
+                        
+                        <div class="indicators">
+                            <span class="indicator active" onclick="goToImage(0)"></span>
+                            <span class="indicator" onclick="goToImage(1)"></span>
+                            <span class="indicator" onclick="goToImage(2)"></span>
+                            <span class="indicator" onclick="goToImage(3)"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Informações de Contato -->
+                <div class="contact-info">
+                    <div class="info-item">
+                        <div class="icon">📍</div>
+                        <div class="info-text">
+                            <p><strong>Essência Saúde Clínica Psicologica</strong></p>
+                            <p>SCS Q. 1, Brasília - DF, 70395-900 Ed. Antonio Venâncio Da Silva - salas 1113 - 1114</p>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <div class="icon">📞</div>
+                        <div class="info-text">
+                            <a href="https://wa.me/5561992697580?text=Bom dia%20gostaria%20de%20fazer%20parte%20da%20equipe%20da%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde." target="_blank">(61) 9 9666-0747</a>
+                        </div>
+                    </div>
+
+                    <button class="whatsapp-btn" onclick="openWhatsApp()">
+                        💬 Contate-nos
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div id="toast" class="toast"></div>
+            </div>
+
+
+            <div class="marcas" style="text-align: center;; color: var(--principal);">
+                <div class="corpo-categorias">
+                    <h1>NOSSOS PLANOS</h1>
+                    <div class="linha">
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/agfpng.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/Banco_Central_do_Brasil_logopng.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/CAIXA.png" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/CASSI.png" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/channels4_profilejpg.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/EVIDAagoraéLuminar_Prancheta1cópiapng.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/fascal.png.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/fusexpng.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/gamapng.webp" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/Logo PF Saúde.jpg" alt="">
+                        </div>
+
+                        <div class="col-5">
+                            <img src="public/assets/Planos-de-saude/marca-camara-preferencial-corespng.webp" alt="">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
     </main>
 
     <footer>
         <div class="container footer-content">
             <div class="footer-text">
-                
+                <img src="public/assets/Logotipo Essência Saúde.svg.png" alt="" srcset="">
                 <p>&copy;2025 - ESSENCIA SAÚDE.</p>
                 <p>Todos os direitos reservados.</p>
             </div>
+
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.103194461062!2d-47.89058552875571!3d-15.798511789532396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b89f230d969%3A0xd12cddc6053c825e!2sEd.%20Antonio%20Ven%C3%A2ncio%20Da%20Silva!5e0!3m2!1spt-BR!2sbr!4v1750009430774!5m2!1spt-BR!2sbr"
+                    width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
             <div class="social">
-                <a href="https://www.instagram.com/" target="_blank">
+                <a href="https://www.instagram.com/essenciasaudeintegrada1/" target="_blank">
                     <img src="public/assets/instagram.svg" alt="Icone de instagram">
                 </a>
                 <a href="https://www.facebook.com/?locale=pt_BR" target="_blank">
-                    <img src="public/assets/facebook.svg" alt="Icone de facebook">
+                    <img src="public/assets/whatsapp.svg" alt="Icone de facebook">
                 </a>
-                <a href="https://www.youtube.com/" target="_blank">
-                    <img src="public/assets/youtube.svg" alt="Icone do youtube">
+                <a href="mailto:essenciasaudepsicologia@gmail.com?subject=Agendamento%20de%20consulta&body=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20um%20psic%C3%B3logo%20da%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde."
+                    target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                        class="bi bi-envelope" viewBox="0 0 16 16" style="color: var(--white);">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+                    </svg>
                 </a>
             </div>
         </div>
     </footer>
 
     <script>
+
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Rolando para baixo
+                header.style.top = "-100px"; // Esconde
+            } else {
+                // Rolando para cima
+                header.style.top = "0"; // Mostra
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Corrige scroll negativo
+        });
+
         function toggleMenu() {
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.toggle('show');
@@ -757,50 +1306,112 @@
             const navLinks = document.querySelector('.nav-links');
             navLinks.classList.remove('show');
         });
-
-        const testimonials = [
-            {
-                name: "Renata, 32 anos – Taguatinga, DF",
-                text: `"Eu achava que nunca ia conseguir sair desse ciclo de ansiedade e tristeza. Na Virtude eu encontrei profissionais que realmente me escutam e me ajudam a entender minhas emoções. Hoje, me sinto mais forte e sei que estou no caminho certo."`,
-                image: "public/assets/image.png"
-            },
-            {
-                name: "Carlos, 45 anos – Brasília, DF",
-                text: `"Durante anos ignorei meu estresse e cansaço emocional. Na clínica, aprendi a reconhecer meus sentimentos e a lidar melhor com eles. Foi um divisor de águas na minha vida."`,
-                image: "public/assets/image.ng"
-            },
-            {
-                name: "Lívia, 28 anos – Águas Claras, DF",
-                text: `"A terapia me ajudou a recuperar minha autoestima e encontrar meu propósito. Me sinto mais confiante e com mais clareza para lidar com os desafios."`,
-                image: "public/assets/image.png"
-            }
-        ];
-
-        let current = 0;
-
-        const testimonialContent = document.getElementById("testimonial-content");
-        const imageContainer = document.querySelector(".testimonial-image img");
-
-        function updateTestimonial(index) {
-            testimonialContent.innerHTML = `
-      <h3>${testimonials[index].name}</h3>
-      <p>${testimonials[index].text}</p>
-    `;
-            imageContainer.src = testimonials[index].image;
-        }
-
-        document.getElementById("prev-btn").addEventListener("click", () => {
-            current = (current - 1 + testimonials.length) % testimonials.length;
-            updateTestimonial(current);
-        });
-
-        document.getElementById("next-btn").addEventListener("click", () => {
-            current = (current + 1) % testimonials.length;
-            updateTestimonial(current);
-        });
-
     </script>
 
+    <script>
+        const galleryImages = [
+            "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1497366216548-37526070297c?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1497366754035-f200968a6e72?w=600&h=400&fit=crop",
+            "https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=600&h=400&fit=crop"
+        ];
+
+        let currentImageIndex = 0;
+
+        // Navegação da galeria
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateGallery();
+        }
+
+        function prevImage() {
+            currentImageIndex = currentImageIndex === 0 ? galleryImages.length - 1 : currentImageIndex - 1;
+            updateGallery();
+        }
+
+        function goToImage(index) {
+            currentImageIndex = index;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const currentImage = document.getElementById('currentImage');
+            const indicators = document.querySelectorAll('.indicator');
+
+            currentImage.src = galleryImages[currentImageIndex];
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentImageIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
+            };
+
+            // Validação básica
+            if (!data.name || !data.email || !data.message) {
+                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            // Simulação de envio
+            console.log('Dados do formulário:', data);
+
+            showToast('Mensagem enviada! Entraremos em contato em breve.', 'success');
+
+            // Limpar formulário
+            this.reset();
+        });
+
+        // WhatsApp
+        function openWhatsApp() {
+            const message = encodeURIComponent("Olá! Gostaria de agendar uma consulta.");
+            window.open(`https://wa.me/5561996660747?text=${message}`, '_blank');
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Inicializar galeria
+        document.addEventListener('DOMContentLoaded', function () {
+            updateGallery();
+
+            // Auto-rotação da galeria (opcional)
+            setInterval(() => {
+                nextImage();
+            }, 5000);
+        });
+
+        // Navegação por teclado na galeria
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+    </script>
 
 
 </body>
