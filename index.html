@@ -1,0 +1,1522 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Essência Saúde</title>
+    <link rel="icon" type="image/png" href="..." />
+    <style>
+        /* ... Seu CSS existente aqui ... */
+
+        :root {
+            --principal-claro: #f8e5cd;
+            --principal: #b99f7e;
+            --bege: #FFFAF1;
+            --paragrafo-escuro: #212529;
+            --paragrafo-claro: #495057;
+            --white: #FFFFFF;
+            --brand-green: #b99f7e;
+            --brand-green-light: #b99f7e;
+            --gray-headline: #333;
+            --gray-paragraph: #666;
+            --brand-beige: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            width: 100%;
+            height: auto;
+        }
+
+        .container {
+            margin-left: 8.125rem;
+            margin-right: 8.125rem;
+        }
+
+        .section {
+            padding: 10rem 0;
+        }
+
+        .position {
+            position: relative;
+        }
+
+        /* Header */
+        header {
+            height: 4.5rem;
+            background-color: var(--principal);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            transition: top 0.3s ease;
+            z-index: 1000;
+        }
+
+        .container.navbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            width: 30%;
+            object-fit: contain;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 100%;
+            position: relative;
+        }
+
+        nav ul {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            list-style: none;
+        }
+
+        nav ul li a {
+            font-size: 1.125rem;
+            font-weight: 700;
+            color: var(--white);
+            padding-bottom: 1.4rem;
+        }
+
+        nav ul li a:hover {
+            color: var(--bege);
+            border-bottom: 2px solid var(--bege);
+        }
+
+        nav button {
+            color: var(--paragrafo-escuro);
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 0.625rem 1.5rem;
+            border: 1px solid var(--white);
+            border-radius: 2.5rem;
+            cursor: pointer;
+        }
+
+
+        /* Menu hambúrguer */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 0.3rem;
+            cursor: pointer;
+            z-index: 1001;
+            background: none;
+            border: none;
+            padding: 0.5rem;
+        }
+
+        .menu-toggle span {
+            width: 1.5rem;
+            height: 2px;
+            background-color: var(--white);
+            border-radius: 1px;
+            transition: all 0.3s ease;
+        }
+
+        .menu-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .menu-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -6px);
+        }
+
+        /* Welcome Section */
+        #welcome-section {
+            background-color: var(--principal);
+            padding-top: 10rem;
+            padding-bottom: 6rem;
+            margin-bottom: 1rem;
+        }
+
+        .welcome {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .content>p {
+            font-size: 0.875rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+
+        .content>h1 {
+            font-size: 3.25rem;
+            color: var(--white);
+            font-weight: 700;
+            margin-top: 0rem;
+        }
+
+        .content>h2 {
+            font-size: 1.125rem;
+            color: var(--white);
+            font-weight: 400;
+            margin-top: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .button {
+            color: var(--white);
+            background-color: var(--principal);
+            font-size: 0.875rem;
+            font-weight: 700;
+            padding: 1.0625rem 2rem;
+            border: var(--white) solid 1px;
+            border-radius: 2.5rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .button-icon {
+            width: 1.25rem;
+            height: 1.25rem;
+        }
+
+        .welcome-img {
+            width: 30%;
+            margin: 0 auto;
+        }
+
+        .data {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: var(--brand-beige);
+            padding: 3.75rem 0rem;
+            border-radius: 0.375rem;
+            width: 100%;
+            position: absolute;
+            padding-top: 0.3rem;
+            margin-top: -0.2rem;
+        }
+
+        .data div.patients,
+        .data div.experts,
+        .data div.market {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .data div.patients h2,
+        .data div.experts h2,
+        .data div.market h2 {
+            font-size: 3rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+        }
+
+        .data div.patients p,
+        .data div.experts p,
+        .data div.market p {
+            font-size: 1rem;
+            color: var(--brand-green);
+            font-weight: 400;
+        }
+
+        .data div.separator {
+            width: 1px;
+            background-color: var(--brand-green);
+        }
+
+        /* About Section */
+        #about-section {
+            background-color: var(--brand-beige);
+            padding: 0px;
+        }
+
+        .about {
+            display: flex;
+            align-items: center;
+        }
+
+        .about .about-img {
+            width: 45%;
+            margin-right: 5rem;
+        }
+
+        .about .about-text {
+            max-width: 36rem;
+        }
+
+        .about .about-text p {
+            font-size: 0.875rem;
+            color: var(--brand-green);
+            font-weight: 700;
+            margin-bottom: 0.625rem;
+        }
+
+        .about .about-text h2 {
+            font-size: 2.5rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+        }
+
+        .about .about-text .paragraph {
+            font-size: 1rem;
+            color: var(--gray-paragraph);
+            font-weight: 400;
+            margin-top: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .contact-text h2 {
+            font-size: 2.5rem;
+            color: var(--gray-headline);
+            font-weight: 700;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .address,
+        .email {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+        }
+
+        .address img,
+        .email img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        .address p,
+        .email p {
+            font-size: 1rem;
+            color: var(--gray-paragraph);
+            font-weight: 400;
+        }
+
+        .contact-img {
+            width: 45%;
+            margin-left: 9rem;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--principal);
+            padding: 5rem 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-text img {
+            width: 16rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-text p:nth-child(2) {
+            margin-bottom: 1rem;
+        }
+
+        .footer-text p {
+            font-size: 0.875rem;
+            color: var(--white);
+            font-weight: 400;
+        }
+
+        .social {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .social img {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+
+        /* Funcionarios Section */
+        .funcionarios {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .funcionarios>.funcionarios {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .funcionarios>.funcionarios h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(to right, #10b981, #3b82f6);
+            margin: 0 auto 20px;
+        }
+
+        .description {
+            max-width: 800px;
+            margin: 0 auto;
+            color: #666;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .content-1 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        /* Form Section */
+        .form-section {
+            height: 95%;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 12px;
+            border: 2px solid #e5e5e5;
+            border-radius: 25px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group textarea {
+            border-radius: 15px;
+            resize: vertical;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #3b82f6;
+        }
+
+        .submit-btn {
+            background: var(--principal);
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Space Section */
+        .space-section {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .space-section h2 {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* Gallery */
+        .gallery-container {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .gallery {
+            position: relative;
+            height: 300px;
+        }
+
+        .gallery img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255, 255, 255, 0.8);
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 1);
+        }
+
+        .prev-btn {
+            left: 15px;
+        }
+
+        .next-btn {
+            right: 15px;
+        }
+
+        .indicators {
+            position: absolute;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .indicator.active {
+            background: white;
+        }
+
+        /* Contact Info */
+        .contact-info {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .icon {
+            font-size: 1.2rem;
+            margin-top: 3px;
+        }
+
+        .info-text p {
+            margin: 0;
+            line-height: 1.4;
+        }
+
+        .info-text strong {
+            color: #333;
+        }
+
+        .info-text a {
+            color: #10b981;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .info-text a:hover {
+            color: #059669;
+        }
+
+        .whatsapp-btn {
+            background: var(--principal);
+            color: white;
+            padding: 15px 20px;
+            border: none;
+            border-radius: 25px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .whatsapp-btn:hover {
+            background: #ac977c;
+            transform: translateY(-2px);
+        }
+
+        .contact-section {
+            margin-top: 0%;
+        }
+
+        /* Toast */
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #333;
+            color: white;
+            padding: 15px 20px;
+            border-radius: 5px;
+            transform: translateX(400px);
+            transition: transform 0.3s;
+            z-index: 1000;
+        }
+
+        .toast.show {
+            transform: translateX(0);
+        }
+
+        .toast.success {
+            background: #10b981;
+        }
+
+        .toast.error {
+            background: #ef4444;
+        }
+
+        /* Marcas Section */
+        .corpo-categorias {
+            max-width: 1080px;
+            margin: auto;
+            padding-left: 25px;
+            padding-right: 25px;
+        }
+
+        .linha {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .marcas {
+            margin: auto;
+        }
+
+        .col-5 {
+            width: 160px;
+        }
+
+        .col-5 img {
+            max-width: 70px;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVIDADE */
+
+        /* Tablet - 1024px */
+        @media (max-width: 1024px) {
+            .container {
+                margin-left: 2rem;
+                margin-right: 2rem;
+            }
+
+            .about {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .about .about-img {
+                width: 80%;
+                margin: 0 auto 2rem;
+            }
+
+            .contact {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact-img {
+                width: 80%;
+                margin: 2rem auto 0;
+            }
+
+            .data {
+                flex-direction: column;
+                gap: 2rem;
+                padding: 2rem;
+                position: static;
+                border-radius: 0;
+            }
+
+            .data div.separator {
+                display: none;
+            }
+
+            footer .footer-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .content-1 {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+
+            .col-5 {
+                width: 120px;
+            }
+        }
+
+        /* Mobile - 768px */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            nav ul.nav-links {
+                position: absolute;
+                top: 4.5rem;
+                right: 0;
+                background: var(--principal);
+                width: 100%;
+                flex-direction: column;
+                align-items: center;
+                gap: 1.5rem;
+                padding: 2rem 0;
+                display: none;
+                transition: all 0.3s ease-in-out;
+                z-index: 999;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            nav ul.nav-links.show {
+                display: flex;
+            }
+
+
+            nav ul li a {
+                font-size: 1.25rem;
+                padding-bottom: 0;
+                border-bottom: none;
+            }
+
+            nav ul li a:hover {
+                border-bottom: none;
+                color: var(--bege);
+            }
+
+            nav button {
+                margin-top: 1rem;
+            }
+
+            .navbar {
+                position: relative;
+            }
+
+            .welcome {
+                flex-direction: column;
+                text-align: center;
+                gap: 2rem;
+            }
+
+            .welcome-img {
+                width: 80%;
+            }
+
+            .about .about-text h2,
+            .contact-text h2 {
+                font-size: 2rem;
+            }
+
+            .content>h1 {
+                font-size: 2.5rem;
+            }
+
+            .funcionarios>.funcionarios h1 {
+                font-size: 2rem;
+            }
+
+            .description {
+                text-align: left;
+                font-size: 1rem;
+            }
+
+            .form-section,
+            .contact-info {
+                padding: 20px;
+            }
+
+            .gallery {
+                height: 250px;
+            }
+
+            .linha {
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .col-5 {
+                width: 100px;
+                margin-bottom: 1rem;
+            }
+
+            footer iframe {
+                width: 100%;
+                max-width: 350px;
+                height: 200px;
+            }
+        }
+
+        /* Mobile Small - 480px */
+        @media (max-width: 480px) {
+            .container {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+
+            .funcionarios {
+                padding: 15px;
+            }
+
+            .content>h1 {
+                font-size: 2rem;
+            }
+
+            .content>h2 {
+                font-size: 1rem;
+            }
+
+            .button {
+                flex-direction: column;
+                padding: 0.75rem 1.5rem;
+                font-size: 0.8rem;
+            }
+
+            .funcionarios>.funcionarios h1 {
+                font-size: 1.8rem;
+            }
+
+            .nav-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1.2rem;
+            }
+
+            .prev-btn {
+                left: 10px;
+            }
+
+            .next-btn {
+                right: 10px;
+            }
+
+            .footer-text img {
+                width: 12rem;
+            }
+
+            .form-section,
+            .contact-info {
+                padding: 15px;
+            }
+
+            .col-5 {
+                width: 80px;
+            }
+
+            .data div.patients h2,
+            .data div.experts h2,
+            .data div.market h2 {
+                font-size: 2rem;
+            }
+
+            .about .about-text h2,
+            .contact-text h2 {
+                font-size: 1.5rem;
+            }
+
+            footer iframe {
+                width: 100%;
+                max-width: 300px;
+                height: 180px;
+            }
+
+            .social {
+                gap: 1rem;
+            }
+
+            .social img {
+                width: 1.2rem;
+                height: 1.2rem;
+            }
+        }
+
+        /* Extra Small - 360px */
+        @media (max-width: 360px) {
+            .container {
+                margin-left: 0.5rem;
+                margin-right: 0.5rem;
+            }
+
+            .funcionarios {
+                padding: 10px;
+            }
+
+            .content>h1 {
+                font-size: 1.8rem;
+            }
+
+            .funcionarios>.funcionarios h1 {
+                font-size: 1.5rem;
+            }
+
+            .form-section,
+            .contact-info {
+                padding: 10px;
+            }
+
+            .col-5 {
+                width: 70px;
+            }
+
+            .linha {
+                gap: 0.5rem;
+            }
+        }
+
+        .carousel-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: auto;
+            overflow: hidden;
+            background-color: #f9f9f9;
+            padding: 20px 0;
+        }
+
+        .carousel-track-container {
+            overflow: hidden;
+        }
+
+        .carousel-track {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .carousel-slide {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            min-width: 100%;
+            flex-wrap: wrap;
+        }
+
+        .carousel-slide img {
+            width: 120px;
+            height: auto;
+            object-fit: contain;
+            padding: 10px;
+            max-width: 100%;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #fff;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+            padding: 5px 10px;
+            z-index: 1;
+        }
+
+        .carousel-btn.prev {
+            left: 0;
+        }
+
+        .carousel-btn.next {
+            right: 0;
+        }
+
+        /* ✅ Ajuste para telas pequenas */
+        @media (max-width: 360px) {
+            .carousel-slide {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .carousel-slide img {
+                width: 80px;
+                padding: 5px;
+            }
+
+            .carousel-btn {
+                font-size: 24px;
+                padding: 5px;
+            }
+        }
+    </style>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <header>
+        <div class="container navbar">
+            <img class="logo" src="public/assets/Logo/psicologia (1).png" alt="Logo" />
+
+            <!-- Botão do menu hamburguer -->
+            <div class="menu-toggle" onclick="toggleMenu()">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
+            <!-- Navegação principal -->
+            <nav>
+                <ul class="nav-links">
+                    <li><a href="#welcome-section">Início</a></li>
+                    <li><a href="#about-section">Sobre</a></li>
+                    <li><a href="#contact-section">Contato</a></li>
+                    <li><a href="#funcionarios">Trabalhe conosco</a></li>
+                    <li><button>Agendar consulta</button></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+        <section id="welcome-section">
+            <div class="container position">
+                <div class="welcome">
+                    <div class="content">
+                        <p>BOAS-VINDAS A ESSÊNCIA SAÚDE 👋</p>
+                        <h1>Uma clíca focada <br /> no seu bem estar</h1>
+                        <h2>Na Essência Saúde Integrada, acreditamos que cada pessoa carrega uma história<br> única e
+                            merece ser
+                            acolhida com empatia, respeito e escuta qualificada. <br>Somos uma clínica de psicologia e
+                            cuidados
+                            integrados à saúde, comprometida com <br>o bem-estar emocional, mental e social de nossos
+                            pacientes.</h2>
+                        <a
+                            href="https://wa.me/5561998816445?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde.">
+                            <button class="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                    class="bi bi-whatsapp" viewBox="0 0 16 16">
+                                    <path
+                                        d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.73.73 0 0 0-.529.247c-.182.198-.691.677-.691 1.654s.71 1.916.81 2.049c.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232" />
+                                </svg>
+                                AGENDE SUA CONSULTA
+                            </button>
+                        </a>
+
+                    </div>
+                    <img class="welcome-img" src="public/assets/Img-site/Inicio.svg" alt="Imagem de paciente">
+                </div>
+
+                <div class="data">
+                    <div class="patients">
+                        <h2>+3.500</h2>
+                        <p>Pacientes atendidos</p>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="experts">
+                        <h2>+15</h2>
+                        <p>Especialistas disponíveis</p>
+                    </div>
+
+                    <div class="separator"></div>
+
+                    <div class="market">
+                        <h2>+03</h2>
+                        <p>Anos no mercado</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about-section" class="section">
+            <div class="container about">
+                <img class="about-img" src="public/assets/Logo/Logo parede.png" alt="Imagem de pacientes">
+                <div class="about-text">
+                    <p></p>
+                    <h2 style="color: #B98F7E;">SOBRE NÓS</h2>
+                    <p class="paragraph" style="text-align: justify; text-justify: inter-word;">
+                        A Essência Saúde foi criada pensando em você.
+                        <br> <br>
+                        Somos uma clínica voltada exclusivamente para a área da Psicologia, com foco na promoção do
+                        bem-estar por meio da prevenção, avaliação e tratamento de questões emocionais e
+                        comportamentais.
+                        <br> <br>
+                        Aqui, entendemos que cada indivíduo tem sua própria história e necessidades. Por isso,
+                        oferecemos um atendimento individualizado, com respeito, empatia e acolhimento. Nossa equipe é
+                        formada por profissionais qualificados e comprometidos com uma escuta humanizada, garantindo que
+                        cada paciente receba cuidado atento e personalizado.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact-section" class="section">
+            <div class="container contact">
+                <div class="contact-text">
+                    <h2>Entre em contato com <br /> a gente!</h2>
+                    <div class="contact-info">
+                        <div class="address">
+                            <img class="icon" src="public/assets/map-pin.svg" alt="Icone de mapa">
+                            <p>SCS Q. 1, Brasília - DF, 70395-900 Ed. Antonio Venâncio Da Silva - salas 1113 - 1114</p>
+                        </div>
+                        <div class="email">
+                            <img class="icon" src="public/assets/mail.svg" alt="Icone de email">
+                            <p>essenciasaudepsicologia@gmail.com</p>
+                        </div>
+                        <div class="email">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor"
+                                class="bi bi-instagram" viewBox="0 0 16 16" style="color: #059669;">
+                                <path
+                                    d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.9 3.9 0 0 0-1.417.923A3.9 3.9 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.9 3.9 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.9 3.9 0 0 0-.923-1.417A3.9 3.9 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599s.453.546.598.92c.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.5 2.5 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.5 2.5 0 0 1-.92-.598 2.5 2.5 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233s.008-2.388.046-3.231c.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92s.546-.453.92-.598c.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334" />
+                            </svg>
+                            <a href="https://www.instagram.com/essenciasaudeintegrada1/">
+                                <p>Essência Saúde</p>
+                            </a>
+                        </div>
+                    </div>
+                    <a
+                        href="https://wa.me/5561998816445?text=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20a%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde.">
+                        <button class="button">
+                            <img class="button-icon" src="public/assets/whatsapp.svg" alt="Imagem whatsapp">
+                            AGENDE SUA CONSULTA
+                        </button>
+                    </a>
+                </div>
+                <img class="contact-img" src="public/assets/Img-site/Atendimento.png" alt="Imagem de contato">
+            </div>
+        </section>
+
+        <div class="contact-container">
+            <!-- Formulário de Contato -->
+
+            <!-- Seção Conheça Nosso Espaço -->
+            <div class="funcionarios">
+                <!-- Header -->
+                <div id="funcionarios" class="funcionarios">
+                    <h1 style="color: var(--principal);">TRABALHE CONOSCO</h1>
+                    <div class="divider"></div>
+                </div>
+
+                <div class="content-1">
+                    <!-- Formulário de Contato -->
+                    <div class="form-section">
+                        <form id="contactForm" class="contact-form">
+                            <div class="form-group">
+                                <label for="name">Nome:</label>
+                                <input type="text" id="name" name="name" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">E-mail:</label>
+                                <input type="email" id="email" name="email" required>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="phone">Telefone:</label>
+                                <input type="tel" id="phone" name="phone">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Mensagem:</label>
+                                <textarea id="message" name="message" rows="5" required></textarea>
+                            </div>
+
+                            <button type="submit" class="submit-btn">ENVIAR</button>
+                        </form>
+                    </div>
+
+                    <!-- Conheça Nosso Espaço -->
+                    <div class="space-section">
+                        <h2 style="color: var(--principal);">Conheça Nosso Espaço</h2>
+
+                        <!-- Galeria de Imagens -->
+                        <div class="gallery-container">
+                            <div class="gallery">
+                                <img id="currentImage"
+                                    src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=600&h=400&fit=crop"
+                                    alt="Espaço da clínica">
+
+                                <button class="nav-btn prev-btn" onclick="prevImage()">&#8249;</button>
+                                <button class="nav-btn next-btn" onclick="nextImage()">&#8250;</button>
+
+                                <div class="indicators">
+                                    <span class="indicator active" onclick="goToImage(0)"></span>
+                                    <span class="indicator" onclick="goToImage(1)"></span>
+                                    <span class="indicator" onclick="goToImage(2)"></span>
+                                    <span class="indicator" onclick="goToImage(3)"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Informações de Contato -->
+                        <div class="contact-info">
+                            <div class="info-item">
+                                <div class="icon">📍</div>
+                                <div class="info-text">
+                                    <p><strong>Essência Saúde Clínica Psicologica</strong></p>
+                                    <p>SCS Q. 1, Brasília - DF, 70395-900 Ed. Antonio Venâncio Da Silva - salas 1113 -
+                                        1114</p>
+                                </div>
+                            </div>
+
+                            <div class="info-item">
+                                <div class="icon">📞</div>
+                                <div class="info-text">
+                                    <a href="https://wa.me/5561998816445?text=Bom dia%20gostaria%20de%20fazer%20parte%20da%20equipe%20da%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde."
+                                        target="_blank">(61) 9 9881-6445</a>
+                                </div>
+                            </div>
+                            <a class="whatsapp-btn" href="">
+                                💬 Contate-nos
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="carousel-container">
+                <button class="carousel-btn prev">&#10094;</button>
+                <div class="carousel-track-container">
+                    <ul class="carousel-track">
+                        <!-- Slide 1 -->
+                        <li class="carousel-slide">
+                            <img src="public/assets/Planos-de-saude/AGF.webp" alt="Logo 1">
+                            <img src="public/assets/Planos-de-saude/BACEN.webp" alt="Logo 2">
+                            <img src="public/assets/Planos-de-saude/CAIXA.webp" alt="Logo 3">
+                            <img src="public/assets/Planos-de-saude/CAMARA.webp" alt="Logo 4">
+                            <img src="public/assets/Planos-de-saude/CASEC.webp" alt="Logo 5">
+                        </li>
+
+                        <li class="carousel-slide">
+                            <img src="public/assets/Planos-de-saude/CASSI.png" alt="Logo 6">
+                            <img src="public/assets/Planos-de-saude/EVIDA.webp" alt="Logo 7">
+                            <img src="public/assets/Planos-de-saude/FASCAL.webp" alt="Logo 8">
+                            <img src="public/assets/Planos-de-saude/FUSEX.webp" alt="Logo 9">
+                            <img src="public/assets/Planos-de-saude/GAMA.webp" alt="Logo 10">
+                        </li>
+
+                        <li class="carousel-slide">
+                            <img src="public/assets/Planos-de-saude/INAS.webp" alt="Logo 6">
+                            <img src="public/assets/Planos-de-saude/NOVA_SAUDE.webp" alt="Logo 7">
+                            <img src="public/assets/Planos-de-saude/PF.jpg" alt="Logo 8">
+                            <img src="public/assets/Planos-de-saude/PLAN.webp" alt="Logo 9">
+                            <img src="public/assets/Planos-de-saude/PROASA.webp" alt="Logo 10">
+                        </li>
+
+                        <li class="carousel-slide">
+                            <img src="public/assets/Planos-de-saude/SERPRO.webp" alt="Logo 6">
+                            <img src="public/assets/Planos-de-saude/SIS.webp" alt="Logo 7">
+                            <img src="public/assets/Planos-de-saude/STF.webp" alt="Logo 8">
+                            <img src="public/assets/Planos-de-saude/STM.webp" alt="Logo 9">
+                            <img src="public/assets/Planos-de-saude/TJDFT.webp" alt="Logo 10">
+                        </li>
+
+                        <li class="carousel-slide">
+                            <img src="public/assets/Planos-de-saude/TRE.webp" alt="Logo 6">
+                            <img src="public/assets/Planos-de-saude/TRF.jpg" alt="Logo 7">
+                            <img src="public/assets/Planos-de-saude/TRT.webp" alt="Logo 8">
+                            <img src="public/assets/Planos-de-saude/TST.webp" alt="Logo 9">
+                            <img src="public/assets/Planos-de-saude/UNAFISCO.webp" alt="Logo 10">
+                        </li>
+
+                    </ul>
+                </div>
+                <button class="carousel-btn next">&#10095;</button>
+            </div>
+
+
+    </main>
+
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-text">
+                <img src="public/assets/Logotipo Essência Saúde.svg.png" alt="" srcset="">
+                <p>&copy;2025 - ESSENCIA SAÚDE.</p>
+                <p>Todos os direitos reservados.</p>
+            </div>
+
+            <div>
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3839.103194461062!2d-47.89058552875571!3d-15.798511789532396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x935a3b89f230d969%3A0xd12cddc6053c825e!2sEd.%20Antonio%20Ven%C3%A2ncio%20Da%20Silva!5e0!3m2!1spt-BR!2sbr!4v1750009430774!5m2!1spt-BR!2sbr"
+                    width="400" height="250" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="social">
+                <a href="https://www.instagram.com/essenciasaudeintegrada1/" target="_blank">
+                    <img src="public/assets/instagram.svg" alt="Icone de instagram">
+                </a>
+                <a href="https://wa.me/5561998816445?text=Bom dia%20gostaria%20de%20fazer%20parte%20da%20equipe%20da%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde."
+                    target="_blank">
+                    <img src="public/assets/whatsapp.svg" alt="Icone de facebook">
+                </a>
+                <a href="mailto:essenciasaudepsicologia@gmail.com?subject=Agendamento%20de%20consulta&body=Ol%C3%A1%2C%20gostaria%20de%20agendar%20uma%20consulta%20com%20um%20psic%C3%B3logo%20da%20cl%C3%ADnica%20Ess%C3%AAncia%20Sa%C3%BAde."
+                    target="_blank">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor"
+                        class="bi bi-envelope" viewBox="0 0 16 16" style="color: var(--white);">
+                        <path
+                            d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2zm2-1a1 1 0 0 0-1 1v.217l7 4.2 7-4.2V4a1 1 0 0 0-1-1zm13 2.383-4.708 2.825L15 11.105zm-.034 6.876-5.64-3.471L8 9.583l-1.326-.795-5.64 3.47A1 1 0 0 0 2 13h12a1 1 0 0 0 .966-.741M1 11.105l4.708-2.897L1 5.383z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        let lastScrollTop = 0;
+        const header = document.querySelector("header");
+
+        window.addEventListener("scroll", () => {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+            if (scrollTop > lastScrollTop) {
+                // Rolando para baixo
+                header.style.top = "-100px"; // Esconde
+            } else {
+                // Rolando para cima
+                header.style.top = "0"; // Mostra
+            }
+
+            lastScrollTop = scrollTop <= 0 ? 0 : scrollTop; // Corrige scroll negativo
+        });
+
+        function toggleMenu() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.toggle('show');
+        }
+
+        // Fecha o menu ao rolar a página
+        window.addEventListener('scroll', () => {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.classList.remove('show');
+        });
+    </script>
+
+    <script>
+        const galleryImages = [
+            "public/assets/Clinica-img/Entrada.jpg",
+            "public/assets/Clinica-img/entrada1.jpg",
+            "public/assets/Clinica-img/corredor.jpg",
+            "public/assets/Clinica-img/consu01.jpg",
+            "public/assets/Clinica-img/consu2.jpg",
+            "public/assets/Clinica-img/consu3.jpg",
+            "public/assets/Clinica-img/consu.jpg"
+        ];
+
+        let currentImageIndex = 0;
+
+        // Navegação da galeria
+        function nextImage() {
+            currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+            updateGallery();
+        }
+
+        function prevImage() {
+            currentImageIndex = currentImageIndex === 0 ? galleryImages.length - 1 : currentImageIndex - 1;
+            updateGallery();
+        }
+
+        function goToImage(index) {
+            currentImageIndex = index;
+            updateGallery();
+        }
+
+        function updateGallery() {
+            const currentImage = document.getElementById('currentImage');
+            const indicators = document.querySelectorAll('.indicator');
+
+            currentImage.src = galleryImages[currentImageIndex];
+
+            indicators.forEach((indicator, index) => {
+                if (index === currentImageIndex) {
+                    indicator.classList.add('active');
+                } else {
+                    indicator.classList.remove('active');
+                }
+            });
+        }
+
+        // Formulário de contato
+        document.getElementById('contactForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const formData = new FormData(this);
+            const data = {
+                name: formData.get('name'),
+                email: formData.get('email'),
+                phone: formData.get('phone'),
+                message: formData.get('message')
+            };
+
+            // Validação básica
+            if (!data.name || !data.email || !data.message) {
+                showToast('Por favor, preencha todos os campos obrigatórios.', 'error');
+                return;
+            }
+
+            // Simulação de envio
+            console.log('Dados do formulário:', data);
+
+            showToast('Mensagem enviada! Entraremos em contato em breve.', 'success');
+
+            // Limpar formulário
+            this.reset();
+        });
+
+        // WhatsApp
+        function openWhatsApp() {
+            const message = encodeURIComponent("Olá! Gostaria de agendar uma consulta.");
+            window.open(`https://wa.me/5561996660747?text=${message}`, '_blank');
+        }
+
+        // Toast notification
+        function showToast(message, type = 'success') {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.className = `toast ${type} show`;
+
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 3000);
+        }
+
+        // Inicializar galeria
+        document.addEventListener('DOMContentLoaded', function () {
+            updateGallery();
+
+            // Auto-rotação da galeria (opcional)
+            setInterval(() => {
+                nextImage();
+            }, 5000);
+        });
+
+        // Navegação por teclado na galeria
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'ArrowLeft') {
+                prevImage();
+            } else if (e.key === 'ArrowRight') {
+                nextImage();
+            }
+        });
+    </script>
+
+    <script>
+        const track = document.querySelector('.carousel-track');
+        const slides = Array.from(track.children);
+        const nextButton = document.querySelector('.carousel-btn.next');
+        const prevButton = document.querySelector('.carousel-btn.prev');
+
+        let currentSlideIndex = 0;
+
+        nextButton.addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+            updateSlidePosition();
+        });
+
+        prevButton.addEventListener('click', () => {
+            currentSlideIndex = (currentSlideIndex - 1 + slides.length) % slides.length;
+            updateSlidePosition();
+        });
+
+        function updateSlidePosition() {
+            const slideWidth = slides[0].getBoundingClientRect().width;
+            track.style.transform = `translateX(-${slideWidth * currentSlideIndex}px)`;
+        }
+
+        // Atualiza posição ao redimensionar janela (evita bugs)
+        window.addEventListener('resize', updateSlidePosition);
+
+    </script>
+
+</body>
+
+</html>
