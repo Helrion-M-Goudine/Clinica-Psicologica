@@ -1,0 +1,26 @@
+Este repositório contém o código-fonte do site institucional da Clínica Essência Saúde, uma clínica de psicologia voltada ao cuidado da saúde mental com atendimento ético, humano e acolhedor.
+
+🔍 Objetivo
+Desenvolver uma interface moderna, responsiva e acessível que apresente os serviços da clínica, sua equipe profissional, localização e formas de contato, além de proporcionar uma experiência amigável ao usuário.
+
+🛠️ Tecnologias Utilizadas
+HTML5 — Estrutura semântica e acessível do conteúdo
+
+CSS3 — Estilização visual com foco em responsividade
+
+✨ Funcionalidades
+Header fixo com menu responsivo
+
+Sessões de apresentação, serviços, equipe, depoimentos e contato
+
+Formulário de contato funcional (em desenvolvimento)
+
+Carrossel de depoimentos e logotipos
+
+Rodapé com links e informações úteis
+
+📱 Responsividade
+O site foi projetado para funcionar perfeitamente em dispositivos móveis, tablets e desktops, utilizando media queries e design mobile-first.
+
+📌 Status do Projeto
+🚧 Em desenvolvimento — Melhorias contínuas na acessibilidade e integração com back-end para envio de formulários.
